@@ -1,0 +1,16 @@
+使用发方法：
+
+点击事件处添加代码
+
+ CustomSpinner customSpinner = new CustomSpinner(this, arraylist, false, this);
+ CustomSpinner.ISDROP = true;
+ customSpinner.setDefaultWidth(width);
+ customSpinner.show(tv_department);
+
+
+ //添加回调
+
+     @Override
+     public void onChooseItem(int position, String view) {
+         //
+     }

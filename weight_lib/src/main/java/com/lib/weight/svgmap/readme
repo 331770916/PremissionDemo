@@ -1,0 +1,9 @@
+SVG地图，该控件还有缺陷，并不完美，有很大的改善空间
+使用方法：
+1、在项目res资源目录下，新建raw资源文件夹
+2、复制svg地图到raw资源文件夹下
+3、在项目activity布局文件中声明SvgMapView
+4、在activity中，键入以下代码，加载svg地图
+
+SvgMapView svgMapView = (SvgMapView)findViewById(R.id.bjMapView);
+svgMapView.setAreas(GetSvgProperties.getMapSvgProperties(this, R.raw.beijingmap));

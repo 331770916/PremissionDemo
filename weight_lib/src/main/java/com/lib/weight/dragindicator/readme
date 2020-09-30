@@ -1,0 +1,43 @@
+使用方法：
+
+
+xml
+
+
+<xxx.dragindicator.DragIndicatorView
+            android:id="@+id/dragIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/item_image"
+            android:background="@color/red"
+            android:padding="@dimen/size3"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textSize="@dimen/txtSize10"/>
+
+
+ 代码：
+
+ if (mDragIndicatorViewVisible) {
+             if ("我的消息".equals(mDatas.get(position).get("title"))) {
+
+                 if ("0".equals("" + mCount)) {
+                     viewHodler.dragIndicatorView.setVisibility(View.GONE);
+                 } else {
+                     viewHodler.dragIndicatorView.setText("" + (mCount > 99 ? "99+" : mCount));
+                     viewHodler.dragIndicatorView.setVisibility(View.VISIBLE);
+                 }
+
+             } else {
+                 viewHodler.dragIndicatorView.setVisibility(View.GONE);
+             }
+
+             viewHodler.dragIndicatorView.setOnDismissAction(new DragIndicatorView.OnIndicatorDismiss() {
+                 @Override
+                 public void OnDismiss(DragIndicatorView view) {
+ //                    bean.isIndicatorShow = false;
+                 }
+             });
+
+         }

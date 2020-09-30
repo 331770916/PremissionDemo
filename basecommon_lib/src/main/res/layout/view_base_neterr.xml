@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#50999999"
+    android:id="@+id/rl_network_error">
+    <LinearLayout
+        android:id="@+id/ll_click"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:background="@mipmap/icon_net_error"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textColor="#4c4c4c"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="10dp"
+            android:text="网络不给力，请检查您的网络设置"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:background="@mipmap/icon_more_them"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="30dp" />
+    </LinearLayout>
+</RelativeLayout>

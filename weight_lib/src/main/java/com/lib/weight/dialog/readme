@@ -1,0 +1,24 @@
+
+
+
+
+
+
+
+---------  ExitDialog  --------
+
+
+ @Override
+    public void onBackPressed() {
+        mExitDialog = new ExitDialog(this);
+        mExitDialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mExitDialog != null) {
+            mExitDialog.dismiss();
+        }
+    }
+----------------------------------------------------

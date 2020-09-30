@@ -1,0 +1,37 @@
+
+        //1
+        private TimePickerView mPvTime;
+
+        //2
+        mPvTime = new TimePickerView(activity, TimePickerView.Type.YEAR_MONTH_DAY);
+        mPvTime.setTime(Helper.getBeforeDate());
+        mPvTime.setCyclic(false);
+        mPvTime.setCancelable(true);
+        mPvTime.setTitle("选择日期");
+        //时间选择后回调
+        mPvTime.setOnTimeSelectListener(this);
+
+        //3
+         @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.transferQueryStartDate:
+
+                        mJuedgeTv = true;
+                        mPvTime.show();
+
+                        break;
+                }
+            }
+
+         //4
+
+             @Override
+             public void onTimeSelect(Date date) {
+                 if (mJuedgeTv) {
+                     mQueryStartDate.setText(mFormate.format(date));
+                 } else {
+                     mQueryEndDate.setText(mFormate.format(date));
+                 }
+
+             }

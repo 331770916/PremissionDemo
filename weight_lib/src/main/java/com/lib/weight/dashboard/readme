@@ -1,0 +1,13 @@
+仪表盘控件
+
+
+ <DialChart05View
+                android:id="@+id/dialchartview"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp" />
+
+        //z
+        DialChart05View dialChart05View = (DialChart05View) findViewById(R.id.dialchartview);
+        dialChart05View.setCurrentStatus(0.05f);
+        dialChart05View.invalidate();

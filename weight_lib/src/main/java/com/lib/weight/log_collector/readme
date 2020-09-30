@@ -1,0 +1,10 @@
+使用方法：
+
+在自定义Application的onCreate();方法中
+
+键入以下代码即可
+
+              /** 收集错误日志 **/
+              LogUtil.logInit(true);
+              LogCollector.setDebugMode(true);
+              LogCollector.initLog(this);

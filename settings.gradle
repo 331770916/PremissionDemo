@@ -1,0 +1,10 @@
+include ':easyPhotos'
+include ':MPChartLib'
+include ':basecommon_lib'
+include ':network_lib'
+include ':weight_lib'
+include ':premissionhelper'
+include ':premissionAbstractProcessorLib'
+include ':premissionAnnotationLib'
+include ':app'
+rootProject.name = "PremissionDemo"

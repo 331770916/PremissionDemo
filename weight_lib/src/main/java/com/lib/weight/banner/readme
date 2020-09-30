@@ -1,0 +1,142 @@
+广告控件用法
+
+-----代码编写部分：-----
+    /**
+     * 轮播图
+     * @param vp_carousel
+     */
+    private void initCarouseView(RelativeLayout vp_carousel) {
+        Fresco.initialize(this);
+        AutoSwitchView loopView = new AutoSwitchView(this);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        loopView.setLayoutParams(layoutParams);
+
+        loopView.setType(0, 0,0
+                , 0, 0);
+        vp_carousel.addView(loopView);
+
+        homeMidAdAdapter = new HomeMidAdAdapter(this);
+        loopView.setAdapter(homeMidAdAdapter);
+
+        List<Map<String,String>> datas = new ArrayList<>();
+        Map<String, String> maps1 = new HashMap<>();
+        maps1.put("", "http://minio.TJJG.com/otatest/temp/lgo33_1583397323099.png");
+
+        Map<String, String> maps2 = new HashMap<>();
+        maps2.put("show_url", "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1761305719,2460667563&fm=26&gp=0.jpg");
+        datas.add(maps1);
+        datas.add(maps2);
+        homeMidAdAdapter.setDatas(datas);
+    }
+
+----adapter编写部分----
+
+public class HomeMidAdAdapter extends AutoLoopSwitchBaseAdapter {
+
+    private Activity mContext;
+
+    private List<Map<String,String>> mDatas;
+
+    public HomeMidAdAdapter(Activity mContext) {
+        this.mContext = mContext;
+    }
+
+    public void setDatas(List<Map<String,String>> mDatas) {
+        this.mDatas = mDatas;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getDataCount() {
+        return mDatas == null ? 0 : mDatas.size();
+    }
+
+    @Override
+    public View getView(int position) {
+        final Map<String,String> model = mDatas.get(position);
+        final String jump_url = model.get("jump_url");
+        String show_url = model.get("show_url");
+        View view = LayoutInflater.from(mContext).inflate(R.layout.view_simpledrawee,null);
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.my_image_view);
+        if("default".equals(show_url)){
+            simpleDraweeView.setImageResource(R.mipmap.sy_middle_default);
+        }else {
+            simpleDraweeView.setImageURI(show_url);
+            simpleDraweeView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+        return view;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        if (position >= 0 && position < getDataCount())
+            return mDatas.get(position);
+        return null;
+    }
+
+
+    @Override
+    public View getEmptyView() {
+        if(mDatas.size()==1 && "default".equals(mDatas.get(0).get("show_url")))
+            return getView(0);
+        return null;
+    }
+
+    @Override
+    public void updateView(View view, int position) {
+        if(!mDatas.isEmpty()&&mDatas.size()==1){
+            String show_url = mDatas.get(0).get("show_url");
+            final String jump_url = mDatas.get(0).get("jump_url");
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.my_image_view);
+            if("default".equals(show_url))
+                simpleDraweeView.setImageResource(R.mipmap.sy_middle_default);
+            else {
+                simpleDraweeView.setImageURI(show_url);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+        }
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        super.destroyItem(container, position, object);
+    }
+
+}
+
+----activity xml布局文件----
+
+    <!-- 广告轮播图 -->
+    <RelativeLayout
+        android:id="@+id/vp_carousel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+----adapter xml布局文件----
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.facebook.drawee.view.SimpleDraweeView
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/my_image_view"
+        fresco:viewAspectRatio="1"
+        fresco:placeholderImageScaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+----gradle引入----
+    implementation 'com.facebook.fresco:fresco:1.3.0'
